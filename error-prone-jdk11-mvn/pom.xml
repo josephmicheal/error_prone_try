@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.error-prone.test</groupId>
+	<artifactId>error-prone-jdk11-mvn</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+					<compilerArgs>
+						<arg>-XDcompilePolicy=simple</arg>
+						<arg>-Xplugin:ErrorProne</arg>
+						<!--<arg>-Xplugin:ErrorProne -XepPatchChecks:DeadException,EmptyMethod
+							-XepPatchLocation:IN_PLACE</arg> for DeadException and EmptyMethod-->
+						<!-- <arg>-Xplugin:ErrorProne
+						-XepPatchChecks:DeadException
+						-XepPatchLocation:IN_PLACE</arg> only for DeadException-->
+					</compilerArgs>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>com.google.errorprone</groupId>
+							<artifactId>error_prone_core</artifactId>
+							<version>2.15.0</version>
+						</path>
+						<path>
+							<groupId>com.error-prone</groupId>
+							<artifactId>error-prone-custom-bug-checker-jdk11-mvn</artifactId>
+							<version>0.0.1-SNAPSHOT</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
